@@ -3,24 +3,32 @@ button {
     transition: transform .3s cubic-bezier(.44,.38,.21,1.19);
 }
 button:hover{
-    transform: scale(1.10);
+
+    transform: translate(-3.75px,-2px) scale(1.05);
+    
 }
 button:active {
     transition: transform 0.2s cubic-bezier(.07,.83,.58,1.24);
     transform: scale(0.97);
 }
 
+h1{
+    color: #2d2419;
+}
+#postTitle{
+    color: #3d3328
+}
 .mbutton {
     all: unset;
     font-size: 24px;
     font-weight: 600;
-    background-color: #4CAF50;
+    background-color: #32364e;
     cursor: pointer;
     border-radius: 4px;
-   
-    
-    box-shadow: 7px 8px rgba(37, 167, 26, 0.25);
-    transition: transform 0.3s , box-shadow 0.3s ease-out;
+    background: #fdfbf7;
+    border: 2px solid #b8a890; /* Add this instead of just border-color */
+    box-shadow: 7px 8px rgba(77, 77, 11, 0.25);
+    transition: transform 0.3s, box-shadow 0.3s ease-out;
     padding: 10px;
     width: 150px;
     height: 80px;
@@ -33,22 +41,28 @@ button:active {
     border-radius: 8px;
     transition: transform .15s ease;
 }
+.mbutton:hover{
+     background: #e8dfd2;
+    border-color: #f5e5cc;
+}
 
 .mbutton img:hover { 
     transform: scale(1.05);
 }
 
-
+.mbutton:active{
+     transform: translate(3.75px,2px) scale(0.97);
+     box-shadow: 3.5px 4px rgba(11, 20, 77, 0.25);
+}
 
 
 .mbutton p {
   margin: 0;  /* remove default margin */
   font-size: 18px;
-  color: white;
+   color: #6b5d4f;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 #postModal {
@@ -57,18 +71,29 @@ button:active {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.5);
-  color: white;
+  color: rgb(48, 18, 18);
   padding: 50px;
   font-size: 20px;
 }
 
 .close{
-    cursor: pointer;
+    cursor: 
+    pointer;
 }
 
-.postTitle{
-    font: Poppins;
+p{
+     color: #6b5d4f;;
 }
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 0.1fr));
+  row-gap: 25px;
+  padding: 0 20px; /* adds horizontal padding */
+}
+
 
 /*TOP BAR THINGY*/
 
