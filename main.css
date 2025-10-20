@@ -1,99 +1,170 @@
-
-button {
-    transition: transform .3s cubic-bezier(.44,.38,.21,1.19);
-}
-button:hover{
-
-    transform: translate(-3.75px,-2px) scale(1.05);
-    
-}
-button:active {
-    transition: transform 0.2s cubic-bezier(.07,.83,.58,1.24);
-    transform: scale(0.97);
+/* --- GLOBAL RESET --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1{
-    color: #2d2419;
-}
-#postTitle{
-    color: #3d3328
-}
+/* --- BUTTON STYLES --- */
+
 .mbutton {
-    all: unset;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #32364e;
-    cursor: pointer;
-    border-radius: 4px;
-    background: #fdfbf7;
-    border: 2px solid #b8a890; /* Add this instead of just border-color */
-    box-shadow: 7px 8px rgba(77, 77, 11, 0.25);
-    transition: transform 0.3s, box-shadow 0.3s ease-out;
-    padding: 10px;
-    width: 150px;
-    height: 80px;
+  all: unset;
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  background: #fdfbf7;
+  border: 2px solid #b8a890;
+  border-radius: 4px;
+  box-shadow: 7px 8px rgba(77, 77, 11, 0.25);
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+  height: 80px;
+  transition: transform 0.3s cubic-bezier(.44,.38,.21,1.19), box-shadow 0.3s ease-out;
 }
 
 .mbutton img {
-    width: 300px;
-    height: 200px;
-    position: relative;
-    border-radius: 8px;
-    transition: transform .15s ease;
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  transition: transform .15s ease;
 }
-.mbutton:hover{
-     background: #e8dfd2;
-    border-color: #f5e5cc;
-}
-
-.mbutton img:hover { 
-    transform: scale(1.05);
-}
-
-.mbutton:active{
-     transform: translate(3.75px,2px) scale(0.97);
-     box-shadow: 3.5px 4px rgba(11, 20, 77, 0.25);
-}
-
 
 .mbutton p {
-  margin: 0;  /* remove default margin */
+  margin: 0;
   font-size: 18px;
-   color: #6b5d4f;
+  color: #6b5d4f;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Hover & Active States */
+.mbutton:hover {
+  background: #e8dfd2;
+  border-color: #4b2d00;
+  transform: translate(-3.75px,-2px) scale(1.05);
+}
+
+.mbutton img:hover {
+  transform: scale(1.05);
+}
+
+.mbutton:active {
+  transition: transform 0.2s cubic-bezier(.07,.83,.58,1.24);
+  transform: scale(0.97) translate(3.75px,2px);
+  box-shadow: 3.5px 4px rgba(11, 20, 77, 0.25);
+}
+
+/* --- HEADINGS --- */
+h1 {
+    margin-left: 20px;
+  color: #2d2419;
+}
+p {
+    margin-left: 25px;
+}
+
+
+
+#postTitle {
+  color: #3d3328;
+}
+/*SEARCH & BUTTOn*/
+.search{
+    background: transparent;
+    border:none;
+    transition: all 0.3s cubic-bezier(.07,.83,.58,1.24);
+}
+.search img{
+    width: 30px
+}
+.search:hover{
+    transform: scale(1.05) rotate(30deg) translate(1px, -2px);
+    cursor: pointer;
+}
+
+
+/* Header button (separate from .button-icon for img) */
+.header-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(.07,.83,.58,1.24);
+}
+
+.header-button:hover {
+  transform: scale(1.05) rotate(30deg) translate(0px,-0.67px);
+}
+
+.header-button:active {
+  transform: scale(0.97);
+}
+
+.header-button img {
+  width: 55px;
+  display: block;
+  filter: brightness(10) saturate(100%) invert(3%) sepia(1%) saturate(2%) hue-rotate(343deg) brightness(99%) contrast(100%);
+}
+/* --- MODAL --- */
 #postModal {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0,0,0,0.5);
   color: rgb(48, 18, 18);
   padding: 50px;
   font-size: 20px;
 }
 
-.close{
-    cursor: 
-    pointer;
+/* --- HEADER --- */
+/* Header placeholder reserves space */
+#header-placeholder {
+  height: 100px; /* same height as your final header */
+}
+.header {
+  width: 100%;
+  height: 75px;
+  background: rgba(110, 67, 15, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  position: relative; /* Add this */
 }
 
-p{
-     color: #6b5d4f;;
+.header h1 {
+  color: #fdfbf7;
+  font-size: 28px;
+  position: absolute; /* Add this */
+  left: 50%; /* Add this */
+  transform: translateX(-50%); /* Add this */
+  margin: 0;
+  text-shadow: 2px 2px#2d2419 ;
+}
+.header nav a {
+  color: #fdfbf7;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
+.header nav a:hover {
+  color: #e8dfd2;
+}
 
-
+/* --- GRID --- */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 0.1fr));
   row-gap: 25px;
-  padding: 0 20px; /* adds horizontal padding */
+  padding: 0 20px;
 }
-
-
-/*TOP BAR THINGY*/
-
