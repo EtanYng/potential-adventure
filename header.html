@@ -1,15 +1,61 @@
 <div class="header">
   <nav class="nav-left">
-    <button id = "search" class="search" title="search" onclick="search()">
-      <img src="assets/search.png" alt="Menu">
+    <button id="search" class="search" title="Search posts" onclick="search()">
+      <img src="assets/search.png" alt="Search">
     </button>
   </nav>
-  
   <h1>Inkubator</h1>
-  
   <nav class="nav-right">
-    <button class="header-button" title="New Post">
+    <button class="header-button" title="Create New Post" onclick="openNewPostModal()">
       <img src="assets/plus.png" alt="New Post">
     </button>
   </nav>
 </div>
+
+<!-- New Post Modal -->
+<div id="postModal">
+  <div style="background: white; margin: 50px auto; max-width: 600px; padding: 30px; border-radius: 8px; position: relative;">
+    <button onclick="closeNewPostModal()" style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 28px; cursor: pointer; color: #6b5d4f;">&times;</button>
+    <h2 style="color: #3d3328; margin-top: 0;">Create New Post</h2>
+    <form id="newPostForm" onsubmit="handleNewPost(event)">
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #3d3328;">Title</label>
+        <input type="text" id="postTitleInput" required style="width: 100%; padding: 10px; border: 2px solid #b8a890; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #3d3328;">Content</label>
+        <textarea id="postContentInput" required rows="6" style="width: 100%; padding: 10px; border: 2px solid #b8a890; border-radius: 4px; font-size: 16px; resize: vertical; box-sizing: border-box;"></textarea>
+      </div>
+      <button type="submit" class="mbutton" style="width: auto; height: auto; padding: 12px 24px; font-size: 18px;">
+        <p style="margin: 0;">Publish Post</p>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+function handleNewPost(event) {
+  event.preventDefault();
+  const title = document.getElementById('postTitleInput').value;
+  const content = document.getElementById('postContentInput').value;
+  
+  // Get existing posts from localStorage
+  let customPosts = JSON.parse(localStorage.getItem('customPosts')) || [];
+  let customTitles = JSON.parse(localStorage.getItem('customTitles')) || [];
+  let upVotes = JSON.parse(localStorage.getItem('upVotes')) || [1, 2, 3, 4, 5];
+  
+  // Add new post
+  customPosts.push(content);
+  customTitles.push(title);
+  upVotes.push(0);
+  
+  // Save to localStorage
+  localStorage.setItem('customPosts', JSON.stringify(customPosts));
+  localStorage.setItem('customTitles', JSON.stringify(customTitles));
+  localStorage.setItem('upVotes', JSON.stringify(upVotes));
+  
+  // Close modal and refresh
+  closeNewPostModal();
+  window.location.reload();
+}
+</script>

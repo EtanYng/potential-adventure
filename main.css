@@ -5,10 +5,14 @@ html, body {
   box-sizing: border-box;
 }
 
-/* --- BUTTON STYLES --- */
+* {
+  box-sizing: border-box;
+}
 
+/* --- BUTTON STYLES --- */
 .mbutton {
   all: unset;
+  display: inline-block;
   margin-left: 20px;
   font-size: 24px;
   font-weight: 600;
@@ -20,14 +24,17 @@ html, body {
   padding: 10px;
   width: 150px;
   height: 80px;
-  transition: transform 0.3s cubic-bezier(.44,.38,.21,1.19), box-shadow 0.3s ease-out;
+  transition: transform 0.3s cubic-bezier(.44,.38,.21,1.19), 
+              box-shadow 0.3s ease-out,
+              background 0.2s ease;
+  position: relative;
 }
 
-.mbutton img {
-  width: 300px;
-  height: 200px;
-  border-radius: 8px;
-  transition: transform .15s ease;
+.mbutton > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .mbutton p {
@@ -56,56 +63,105 @@ html, body {
   box-shadow: 3.5px 4px rgba(11, 20, 77, 0.25);
 }
 
+/* Small corner button */
+.mini-button {
+  margin-top: 4px;
+  margin-left: 0px;
+  background: #fdfbf7;
+  border: 2px solid #b8a890;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 2px 2px rgba(77, 77, 11, 0.25);
+  transition: transform 0.2s cubic-bezier(.44,.38,.21,1.19), 
+              box-shadow 0.2s ease-out,
+              background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon inside the small button */
+.mini-button img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Hover + active effects */
+.mini-button:hover {
+  background: #e8dfd2;
+  border-color: #4b2d00;
+  transform: scale(1.15) rotate(5deg);
+}
+
+.mini-button:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px rgba(11, 20, 77, 0.25);
+}
+
 /* --- HEADINGS --- */
 h1 {
-    margin-left: 20px;
+  margin-left: 20px;
   color: #2d2419;
 }
+
 p {
-    margin-left: 25px;
+  margin-left: 25px;
 }
-
-
 
 #postTitle {
   color: #3d3328;
 }
-/*SEARCH & BUTTOn*/
-.search{
-    background: transparent;
-    border:none;
-    transition: all 0.3s cubic-bezier(.07,.83,.58,1.24);
-}
-.search img{
-    width: 30px
-}
-.search:hover{
-    transform: scale(1.05) rotate(30deg) translate(1px, -2px);
-    cursor: pointer;
+
+/* --- SEARCH & HEADER BUTTONS --- */
+.search {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  transition: all 0.3s cubic-bezier(.07,.83,.58,1.24);
+  cursor: pointer;
 }
 
+.search img {
+  width: 35px;
+  height: 35px;
+  filter: brightness(0) invert(1);
+  transition: filter 0.2s ease;
+}
 
-/* Header button (separate from .button-icon for img) */
+.search:hover {
+  transform: scale(1.15) rotate(15deg);
+}
+
+.search:active {
+  transform: scale(0.95) rotate(0deg);
+}
+
+/* Header button */
 .header-button {
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 8px;
   transition: transform 0.3s cubic-bezier(.07,.83,.58,1.24);
 }
 
 .header-button:hover {
-  transform: scale(1.05) rotate(30deg) translate(0px,-0.67px);
+  transform: scale(1.15) rotate(-15deg);
 }
 
 .header-button:active {
-  transform: scale(0.97);
+  transform: scale(0.95) rotate(0deg);
 }
 
 .header-button img {
-  width: 55px;
+  width: 35px;
+  height: 35px;
   display: block;
-  filter: brightness(10) saturate(100%) invert(3%) sepia(1%) saturate(2%) hue-rotate(343deg) brightness(99%) contrast(100%);
+  filter: brightness(0) invert(1);
 }
+
 /* --- MODAL --- */
 #postModal {
   display: none;
@@ -114,51 +170,48 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  color: rgb(48, 18, 18);
-  padding: 50px;
-  font-size: 20px;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 10000;
+  overflow-y: auto;
 }
 
 /* --- HEADER --- */
-/* Header placeholder reserves space */
 #header-placeholder {
-  height: 100px; /* same height as your final header */
+  height: 75px;
 }
+
 .header {
   width: 100%;
   height: 75px;
-  background: rgba(110, 67, 15, 0.5);
+  background: linear-gradient(135deg, rgba(110, 67, 15, 0.6), rgba(77, 47, 10, 0.7));
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
   box-sizing: border-box;
-  position: relative; /* Add this */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .header h1 {
   color: #fdfbf7;
-  font-size: 28px;
-  position: absolute; /* Add this */
-  left: 50%; /* Add this */
-  transform: translateX(-50%); /* Add this */
+  font-size: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
-  text-shadow: 2px 2px#2d2419 ;
-}
-.header nav a {
-  color: #fdfbf7;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: 500;
-  transition: color 0.2s;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
 }
 
-.header nav a:hover {
-  color: #e8dfd2;
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* --- GRID --- */
@@ -166,5 +219,29 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 0.1fr));
   row-gap: 25px;
-  padding: 0 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* --- VOTE COUNT --- */
+.vote-count {
+  font-size: 14px;
+  color: #8b7355;
+  font-weight: 500;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 24px;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .mbutton {
+    width: 130px;
+    height: 70px;
+  }
 }
